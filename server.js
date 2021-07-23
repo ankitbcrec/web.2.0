@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 
 const {save_user_information} = require('./models/server_db');
 
+
 //app.use(express.json());
 
 //handelling the json and parsing the values
@@ -41,7 +42,17 @@ app.post('/', async (req,res) =>{
     return res.send(return_info);
   }
 
+//code block to insert the data
   var result = await save_user_information({"amount" : amount, "email" : email});
   //res.send({"amount" : amount, "email" : email);
+  res.send(result);
+});
+
+
+
+//code block to get the data from db
+app.get('/get_total_amount', async (req,res) =>{
+  var result = await get_total_amount();
+  //console.log(result);
   res.send(result);
 });
