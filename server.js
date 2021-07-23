@@ -1,5 +1,11 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+
+//handelling the json and parsing the values
+
+app.use(bodyParser.json());
+
 
 //checking console message
 console.log('cheking the port listner');
@@ -18,5 +24,5 @@ app.post('/', (req,res) =>{
   var email = req.body.email
   var amount = req.body.amount
 
-  res.send('amount' : amount, "email" : email);
+  res.send({"amount" : amount, "email" : email});
 });
