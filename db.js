@@ -16,7 +16,7 @@ function handleDisconnection(){
 
   //if the conncetion is erroerd out call the handleDisconnection function
   //to reconnect to the db
-  connection.connect(function(err)){
+  connection.connect(function(err){
     if(err){
       console.log('error while connecting to the db',err);
       setTimeout(handleDisconnection,2000);
@@ -24,7 +24,8 @@ function handleDisconnection(){
   });
   //if the conncetion is lost call the handleDisconnection function
   //to reconnect to the db
-  connection.on('error',function(err)){
+  connection.on('error',function(err){
+      console.log('db error', err);
     if(err.code === 'PROTOCOL_CONNECTION_LOST'){
       handleDisconnection();
     }else{
@@ -34,3 +35,4 @@ function handleDisconnection(){
 }
 
 handleDisconnection();
+module.exports = connection;
