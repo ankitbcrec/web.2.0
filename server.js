@@ -5,11 +5,17 @@ const bodyParser = require('body-parser');
 const {save_user_information} = require('./models/server_db');
 
 
+//path is a inbuilt library from node
+const path = require('path');
+const publicPath = path.join(__dirname, './public');
+
 //app.use(express.json());
 
 //handelling the json and parsing the values
 app.use(bodyParser.json());
 
+//This is to consume the path index.html and
+app.use(express.static(publicPath));
 
 //checking console message
 console.log('cheking the port listner');
